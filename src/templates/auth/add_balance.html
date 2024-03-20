@@ -1,0 +1,14 @@
+{% include "layouts/base.html" %}
+
+{% block content %}
+
+<form method="post">
+   {{form.hidden_tag()}}
+ <br>
+    {{form.balance(class="form-control", placeholder=form.balance.label.text)}}
+    <br>
+    <br>
+    {{form.submit(class="btn btn-primary mt2")}}
+   </form>
+
+{%endblock%}

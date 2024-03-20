@@ -1,0 +1,26 @@
+{% include "layouts/base.html" %}
+
+{% block content %}
+    Name: {{logged_user.name}}
+<br>
+    Surname: {{logged_user.surname}}
+<br>
+Balance: {{logged_user.balance}}$ -- <a href="{{url_for('auth.add_balance',user_id = logged_user.id)}}" class="btn btn-success">Add Balance</a>
+<br>
+    Email: {{logged_user.email}}
+<br>
+<br>
+
+<b><h3>Your Items:</h3></b>
+<div>
+{%for item in user_items%}
+    {{item.name}} -- {{item.price}}$
+    <br>
+
+
+    {%endfor%}
+
+</div>
+
+
+{% endblock %}

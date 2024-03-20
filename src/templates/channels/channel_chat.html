@@ -1,0 +1,53 @@
+{% include "layouts/base.html" %}
+
+
+{% block content %}
+
+
+    {%for message in messages%}
+<div>
+    <p>Name:{{message.name}}</p>
+
+    <p> Message: {{message.message}}</p>
+    <br>
+
+    {%if current_user.id == admin%}
+    <form method="post" action="{{ url_for('channel.delete_message', message_id=message.id) }}" style="display: inline;">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+    {%elif current_user.name == message.name%}
+    <form method="post" action="{{ url_for('channel.delete_message', message_id=message.id) }}" style="display: inline;">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+    {%else%}
+        <form method="post" action="{{ url_for('channel.delete_message', message_id=message.id) }}" style="display: inline;">
+                <button type="submit" class="btn btn-danger" DISABLED>Delete</button>
+            </form>
+    {%endif%}
+
+
+</div>
+<br>
+<br>
+{%endfor%}
+
+
+{% if messages == [] and current_user.is_authenticated == False %}
+<p>Log in to Start Chatting!</p>
+{%endif%}
+
+{%if current_user.is_authenticated == False%}
+<p>Log in to Start Chatting!</p>
+<form method="post" action="{{ url_for('auth.login',) }}" style="display: inline;">
+                <button type="submit" class="btn btn-success">Login</button>
+            </form>
+{%else%}
+<form method="post">
+ <br>
+     {{ form.hidden_tag() }}
+    {{form.message(class="form-control", placeholder=form.message.label.text)}}
+    <br>
+    {{form.submit(class="btn btn-primary mt2")}}
+</form>
+{%endif%}
+{% endblock %}

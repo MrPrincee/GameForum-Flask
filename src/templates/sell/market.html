@@ -1,0 +1,25 @@
+{% include "layouts/base.html" %}
+
+
+{% block content %}
+
+<b><h1>Items For Sale:</h1></b>
+<br>
+
+{% for item in selling_items %}
+    {% if item.owner_id != current_user.id %}
+
+    {{item.name}}--{{item.price}}$ -- <a href="{{url_for('sell.buy_item',item_id=item.id)}}" class="btn btn-success">Buy</a>
+    <br>
+    {% else %}
+    {{item.name}}--{{item.price}}$ -- <a href="{{url_for('sell.delete_item', item_id = item.id)}}"  class="btn btn-danger">Delete</a>
+    <br>
+
+    {% endif %}
+
+{% endfor  %}
+
+<a href="{{url_for('sell.add_item')}}" class="btn btn-success">Sell Item</a>
+    <br>
+
+{% endblock %}

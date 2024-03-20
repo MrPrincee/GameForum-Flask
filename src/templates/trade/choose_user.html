@@ -1,0 +1,20 @@
+{% include "layouts/base.html" %}
+
+{% block content %}
+<b><h1>Create Trade:</h1></b>
+
+<form method="post">
+   {{form.hidden_tag()}}
+
+ <br>
+    <h3>Choose User</h3>
+        {{ form.all_users.label }}
+        {{ form.all_users(class="form-control") }}
+        {{ form.submit_button }}
+    <br>
+     {{form.submit(class="btn btn-primary mt2")}}
+</form>
+
+
+
+{%endblock%}

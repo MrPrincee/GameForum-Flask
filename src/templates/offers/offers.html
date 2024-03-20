@@ -1,0 +1,16 @@
+{% include "layouts/base.html" %}
+
+{% block content %}
+
+<p><h1>Best current offers on Steam:</h1></p>
+
+
+{% for game in games_list %}
+
+    {{game_name[games_list.index(game)]}}:
+    <a href="https://store.steampowered.com/app/{{game}}">Visit here</a>
+    <br>
+{%endfor%}
+
+
+{% endblock %}

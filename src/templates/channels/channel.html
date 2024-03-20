@@ -1,0 +1,44 @@
+{% include "layouts/base.html" %}
+
+{% block content %}
+
+<p><h1>All Channel list</h1></p>
+{%for channel in channels%}
+
+{%if current_user.id == channel.channel_admin%}
+<form method="post" action="{{ url_for('channel.channel_chat',channel_id=channel.id) }}" style="display: inline;">
+                <button type="submit" class="btn btn-success">{{channel.name}}</button>--
+            </form>
+<form method="post" action="{{ url_for('channel.delete_channel',channel_id=channel.id) }}" style="display: inline;">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+<br>
+{%else%}
+<form method="post" action="{{ url_for('channel.channel_chat',channel_id=channel.id) }}" style="display: inline;">
+                <button type="submit" class="btn btn-success">{{channel.name}}</button>
+            </form>
+<br>
+{%endif%}
+
+<br>
+
+<br>
+{% endfor %}
+
+<br>
+
+{%if current_user.is_authenticated == False%}
+<form method="post" action="{{ url_for('auth.login',) }}" style="display: inline;">
+                <button type="submit" class="btn btn-dark">Create</button>
+            </form>
+{%else%}
+<form method="post" action="{{ url_for('channel.create_channel',) }}" style="display: inline;">
+                <button type="submit" class="btn btn-dark">Create</button>
+            </form>
+
+
+{%endif%}
+
+
+
+{% endblock %}

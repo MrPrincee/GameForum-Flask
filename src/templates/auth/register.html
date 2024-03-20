@@ -1,0 +1,20 @@
+{% include 'layouts/base.html' %}
+
+{% block content %}
+    <form method="post">
+    {{form.hidden_tag()}}
+    <br>
+    {{form.name(class="form-control", placeholder=form.name.label.text)}}
+    <br>
+    {{form.surname(class="form-control", placeholder=form.surname.label.text)}}
+<br>
+    {{form.email(class="form-control", placeholder=form.email.label.text)}}
+<br>
+    {{form.password(class="form-control", placeholder=form.password.label.text)}}
+<br>
+        {{form.conf_password(class="form-control", placeholder=form.conf_password.label.text)}}
+<br>
+    {{form.submit(class="btn btn-primary mt2")}}
+
+        </form>
+{% endblock %}
