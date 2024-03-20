@@ -32,10 +32,7 @@ def init_db():
     click.echo("Done!")
 
 
-@click.command("send_mail")
-@with_appcontext
-def test_mail():
-    send_mail("tema", "zdarova bratuxa", ["buba@gmail.com"])
+
 
 
 
