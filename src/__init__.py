@@ -4,7 +4,7 @@ from src.config import Config
 from src.models import User, Item, Message, Channel,SellItems
 from src.admin import admin
 from src.views import main_blueprint, auth_blueprint, channel_blueprint, offer_blueprint, trade_blueprint,sell_blueprint
-from src.commands import init_db,test_mail
+from src.commands import init_db
 
 from flask_admin.contrib.sqla import ModelView
 #
@@ -26,7 +26,6 @@ def reg_ext(app):
     db.init_app(app)
 
     app.cli.add_command(init_db)
-    app.cli.add_command(test_mail)
 
     admin.init_app(app)
     admin.add_view(ModelView(User, db.session,name="User_panel",endpoint="userpanel"))
